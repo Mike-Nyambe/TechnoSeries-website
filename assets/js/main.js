@@ -1,9 +1,4 @@
-/*--------------------------
-    Project Name: DataSoft
-    Version: 1.0
-    Author: 7oorof
-    Relase Date: February 2021
----------------------------*/
+
 /*---------------------------
       Table of Contents
     --------------------
