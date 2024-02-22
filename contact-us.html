@@ -281,16 +281,16 @@
                 <form
                   class="contact-panel__form"
                   method="post"
-                  action="#"
+                  action=""
                   id="contactForm"
-                  onsubmit="sendEmail(); reset(); return false;"
                 >
                   <div class="row">
                     <div class="col-sm-12">
-                      <h4 class="contact-panel__title">Get In Touch</h4>
+                      <h4 class="contact-panel__title">Request A Quote</h4>
                       <p class="contact-panel__desc mb-20">
-                        Feel free to get connected and our team is readily
-                        available to respond to you.
+                        Our deep pool of certified engineers and IT staff are
+                        ready to help you to keep your IT business safe & ensure
+                        high availability.
                       </p>
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-6">
@@ -299,8 +299,8 @@
                           type="text"
                           class="form-control"
                           placeholder="Name"
-                          id="contact-name"
-                          name="contact-name"
+                          id="name"
+                          name="name"
                           required
                         />
                       </div>
@@ -312,10 +312,23 @@
                           type="email"
                           class="form-control"
                           placeholder="Email"
-                          id="contact-email"
-                          name="contact-email"
+                          id="email"
+                          name="email"
                           required
                         />
+                      </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div class="form-group">
+                        <select class="form-control">
+                          <option value="1">Software Development</option>
+                          <option value="2">Multimedia Services</option>
+                          <option value="3">Live Streaming</option>
+                          <option value="4">Printing & Branding</option>
+                          <option value="5">Technical Services</option>
+                          <option value="6">Air Conditioning</option>
+                        </select>
                       </div>
                     </div>
                     <!-- /.col-lg-6 -->
@@ -325,21 +338,9 @@
                           type="text"
                           class="form-control"
                           placeholder="Phone"
-                          id="contact-Phone"
-                          name="contact-phone"
+                          id="phone"
+                          name="phone"
                           required
-                        />
-                      </div>
-                    </div>
-                    <!-- /.col-lg-6 -->
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Website (optional)"
-                          id="contact-website"
-                          name="contact-website"
                         />
                       </div>
                     </div>
@@ -349,13 +350,13 @@
                         <textarea
                           class="form-control"
                           placeholder="Describe your inquirey!"
-                          id="contact-message"
-                          name="contact-message"
+                          id="message"
+                          name="message"
                         ></textarea>
                       </div>
                       <button
                         type="submit"
-                        class="btn btn__primary btn__icon btn__xhight mt-10"
+                        class="btn btn__secondary btn__icon btn__xhight mt-10"
                       >
                         <span>Submit Request</span>
                         <i class="icon-arrow-right"></i>
