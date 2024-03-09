@@ -411,7 +411,6 @@
                 <form
                   class="contact-panel__form"
                   method="post"
-                  action=""
                   id="contactForm"
                 >
                   <div class="row">
@@ -451,13 +450,26 @@
                     <!-- /.col-lg-6 -->
                     <div class="col-sm-6 col-md-6 col-lg-6">
                       <div class="form-group">
-                        <select class="form-control" name="service">
-                          <option value="1">Software Development</option>
-                          <option value="2">Multimedia Services</option>
-                          <option value="3">Live Streaming</option>
-                          <option value="4">Printing & Branding</option>
-                          <option value="5">Technical Services</option>
-                          <option value="6">Air Conditioning</option>
+                        <select class="form-control" name="service" required>
+                          <option value="" disabled selected>
+                            Select Service
+                          </option>
+                          <option value="Software Development">
+                            Software Development
+                          </option>
+                          <option value="Multimedia Service">
+                            Multimedia Services
+                          </option>
+                          <option value="Live Streaming">Live Streaming</option>
+                          <option value="Printing & Branding">
+                            Printing & Branding
+                          </option>
+                          <option value="Technical Services">
+                            Technical Services
+                          </option>
+                          <option value="Air Conditioning">
+                            Air Conditioning
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -486,6 +498,7 @@
                       </div>
                       <button
                         type="submit"
+                        onclick="submitForm()"
                         class="btn btn__secondary btn__icon btn__xhight mt-10"
                       >
                         <span>Submit Request</span>

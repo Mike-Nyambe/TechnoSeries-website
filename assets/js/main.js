@@ -1,22 +1,20 @@
-
 /*---------------------------
-      Table of Contents
-    --------------------
-    01- Pre Loading
-    02- Mobile Menu
-    03- Sticky Navbar
-    04- Scroll Top Button
-    05- Close Topbar
-    06- Set Background-img to section 
-    07- Add active class to accordions
-    08- Contact Form validation
-    09- Slick Carousel
-    10- Popup Video
-    11- CounterUp
-    12- NiceSelect Plugin
-    13- portfolio Filtering and Sorting
-     
- ----------------------------*/
+    Table of Contents
+--------------------
+01- Pre Loading
+02- Mobile Menu
+03- Sticky Navbar
+04- Scroll Top Button
+05- Close Topbar
+06- Set Background-img to section 
+07- Add active class to accordions
+08- Contact Form validation
+09- Slick Carousel
+10- Popup Video
+11- CounterUp
+12- NiceSelect Plugin
+13- Portfolio Filtering and Sorting
+----------------------------*/
 
 $(function () {
   "use strict";
@@ -24,13 +22,13 @@ $(function () {
   // Global variables
   var $win = $(window);
 
-  /*==========  Pre Loading   ==========*/
+  /*========== Pre Loading ==========*/
   $win.on("load", function () {
     $(".preloader").fadeOut(5000);
     $(".preloader").remove();
   });
 
-  /*==========   Mobile Menu   ==========*/
+  /*========== Mobile Menu ==========*/
   $(".navbar-toggler").on("click", function () {
     $(".navbar-collapse").addClass("menu-opened");
   });
@@ -39,7 +37,7 @@ $(function () {
     $(".navbar-collapse").removeClass("menu-opened");
   });
 
-  /*==========   Sticky Navbar   ==========*/
+  /*========== Sticky Navbar ==========*/
   $win.on("scroll", function () {
     if ($win.width() >= 992) {
       var $stickyNavbar = $(".sticky-navbar"),
@@ -58,6 +56,7 @@ $(function () {
       }
     }
   });
+
   // Scroll To Section when Clicking on The Link
   $(".secondary-nav-internal-navigation .nav__link").on("click", function (e) {
     e.preventDefault();
@@ -69,7 +68,7 @@ $(function () {
     );
   });
 
-  // Add  active class when The Scroll Reaching the Section
+  // Add active class when The Scroll Reaching the Section
   $(window).on("scroll", function () {
     $("section").each(function () {
       if ($(window).scrollTop() > $(this).offset().top - 141) {
@@ -86,7 +85,7 @@ $(function () {
     });
   });
 
-  /*==========   Scroll Top Button   ==========*/
+  /*========== Scroll Top Button ==========*/
   var $scrollTopBtn = $("#scrollTopBtn");
   // Show Scroll Top Button
   $win.on("scroll", function () {
@@ -106,13 +105,13 @@ $(function () {
     );
   });
 
-  /*==========   Close Topbar   ==========*/
+  /*========== Close Topbar ==========*/
   $(".topbar__close").on("click", function (e) {
     e.preventDefault();
     $(this).closest(".topbar").fadeOut();
   });
 
-  /*==========   Set Background-img to section   ==========*/
+  /*========== Set Background-img to section ==========*/
   $(".bg-img").each(function () {
     var imgSrc = $(this).children("img").attr("src");
     $(this)
@@ -129,7 +128,7 @@ $(function () {
     $(this).remove();
   });
 
-  /*==========   Add active class to accordions   ==========*/
+  /*========== Add active class to accordions ==========*/
   $(".accordion__header").on("click", function () {
     $(this).parent(".accordion-item").toggleClass("opened");
     $(this).parent(".accordion-item").siblings().removeClass("opened");
@@ -138,7 +137,7 @@ $(function () {
     e.preventDefault();
   });
 
-  /*==========  Open and Close Popup   ==========*/
+  /*========== Open and Close Popup ==========*/
   // open Popup
   function openPopup(popupTriggerBtn, popup, addedClass, removedClass) {
     $(popupTriggerBtn).on("click", function (e) {
@@ -152,19 +151,19 @@ $(function () {
       $(popup).removeClass(addedClass).addClass(removedClass);
     });
   }
-  // close popup when clicking on an other place on the Document
+  // close popup when clicking on another place on the Document
   function closePopupFromOutside(
     popup,
-    stopPropogationElement,
+    stopPropagationElement,
     popupTriggerBtn,
     removedClass,
     addedClass
   ) {
     $(document).on("mouseup", function (e) {
       if (
-        !$(stopPropogationElement).is(e.target) &&
+        !$(stopPropagationElement).is(e.target) &&
         !$(popupTriggerBtn).is(e.target) &&
-        $(stopPropogationElement).has(e.target).length === 0 &&
+        $(stopPropagationElement).has(e.target).length === 0 &&
         $(popup).has(e.target).length === 0
       ) {
         $(popup).removeClass(removedClass).addClass(addedClass);
@@ -182,7 +181,7 @@ $(function () {
     ".action__btn-burgerMenu",
     "active",
     "inActive"
-  ); // close popup when clicking on an other place on the Document
+  ); // close popup when clicking on another place on the Document
   openPopup(".action__btn-menuPopup", ".menu-popup", "active", "inActive"); // Open menu-popup
   closePopup(".menu-popup__close", ".menu-popup", "active", "inActive"); // Close menu-popup
 
@@ -193,7 +192,7 @@ $(function () {
     ".open-login-popup",
     "active",
     "inActive"
-  ); // close popup when clicking on an other place on the Document
+  ); // close popup when clicking on another place on the Document
 
   openPopup(".open-register-popup", "#register-popup", "active", "inActive"); // Open sidenav popup
   closePopupFromOutside(
@@ -202,7 +201,7 @@ $(function () {
     ".open-register-popup",
     "active",
     "inActive"
-  ); // close popup when clicking on an other place on the Document
+  ); // close popup when clicking on another place on the Document
   // Open Login Popup
   $("#go-login").on("click", function () {
     $("#register-popup").removeClass("active").addClass("inActive");
@@ -214,33 +213,14 @@ $(function () {
     $("#register-popup").removeClass("inActive").addClass("active");
   });
 
-  /*==========  Contact Form validation  ==========*/
-  var contactForm = $("#contactForm"),
-    contactResult = $(".contact-result");
+  /*========== Contact Form validation ==========*/
+  var contactForm = $("#contactForm");
+
   contactForm.validate({
     debug: false,
-    submitHandler: function (contactForm) {
-      $(contactResult, contactForm).html("Please Wait...");
-      $.ajax({
-        type: "POST",
-        url: "assets/php/contact.php",
-        data: $(contactForm).serialize(),
-        timeout: 20000,
-        success: function (msg) {
-          $(contactResult, contactForm)
-            .html(
-              '<div class="alert alert-success" role="alert"><strong>Thank you. We will contact you shortly.</strong></div>'
-            )
-            .delay(3000)
-            .fadeOut(2000);
-        },
-        error: $(".thanks").show(),
-      });
-      return false;
-    },
   });
 
-  /*==========   Slick Carousel ==========*/
+  /*========== Slick Carousel ==========*/
   $(".slick-carousel").slick();
 
   $(".slider-with-navs").slick({
@@ -267,7 +247,7 @@ $(function () {
     autoplaySpeed: 2000, // Set autoplay speed in milliseconds (e.g., 2000ms = 2 seconds)
   });
 
-  /*==========  Popup Video  ==========*/
+  /*========== Popup Video ==========*/
   $(".popup-video").magnificPopup({
     mainClass: "mfp-fade",
     removalDelay: 0,
@@ -304,16 +284,16 @@ $(function () {
     },
   });
 
-  /*==========   counterUp  ==========*/
+  /*========== counterUp ==========*/
   $(".counter").counterUp({
     delay: 10,
     time: 4000,
   });
 
-  /*==========  NiceSelect Plugin  ==========*/
+  /*========== NiceSelect Plugin ==========*/
   $("select").niceSelect();
 
-  /*==========   portfolio Filtering and Sorting  ==========*/
+  /*========== Portfolio Filtering and Sorting ==========*/
   $("#filtered-items-wrap").mixItUp();
   $(".portfolio-filter li a").on("click", function (e) {
     e.preventDefault();

@@ -281,8 +281,8 @@
                 <form
                   class="contact-panel__form"
                   method="post"
-                  action=""
-                  id="contactForm"
+                  id="myForm"
+                  onsubmit="return validateForm()"
                 >
                   <div class="row">
                     <div class="col-sm-12">
@@ -321,13 +321,23 @@
                     <!-- /.col-lg-6 -->
                     <div class="col-sm-6 col-md-6 col-lg-6">
                       <div class="form-group">
-                        <select class="form-control">
-                          <option value="1">Software Development</option>
-                          <option value="2">Multimedia Services</option>
-                          <option value="3">Live Streaming</option>
-                          <option value="4">Printing & Branding</option>
-                          <option value="5">Technical Services</option>
-                          <option value="6">Air Conditioning</option>
+                        <select class="form-control" name="service">
+                          <option value="Software Development">
+                            Software Development
+                          </option>
+                          <option value="Multimedia Service">
+                            Multimedia Services
+                          </option>
+                          <option value="Live Streaming">Live Streaming</option>
+                          <option value="Printing & Branding">
+                            Printing & Branding
+                          </option>
+                          <option value="Technical Services">
+                            Technical Services
+                          </option>
+                          <option value="Air Conditioning">
+                            Air Conditioning
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -355,7 +365,8 @@
                         ></textarea>
                       </div>
                       <button
-                        type="submit"
+                        type="button"
+                        onclick="submitForm()"
                         class="btn btn__secondary btn__icon btn__xhight mt-10"
                       >
                         <span>Submit Request</span>
@@ -421,13 +432,14 @@
                       ></a>
                     </li>
                     <li>
-                      <a href="https://web.facebook.com/technoseriesltd"
-                        ><i class="fa fa-instagram"></i
+                      <a
+                        href="https://www.linkedin.com/company/techno-series-ltd/"
+                        ><i class="fa fa-linkedin"></i
                       ></a>
                     </li>
                     <li>
-                      <a href="https://web.facebook.com/technoseriesltd"
-                        ><i class="fa fa-twitter"></i
+                      <a href="https://www.youtube.com/@TechnoSeriesLtd"
+                        ><i class="fa fa-youtube"></i
                       ></a>
                     </li>
                   </ul>
@@ -537,6 +549,96 @@
     <script src="assets/js/jquery-3.5.1.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/form.js"></script>
+    <script>
+      function submitForm() {
+        const form = document.getElementById("myForm");
+        const name = document.querySelector('input[name="name"]').value.trim();
+        const email = document
+          .querySelector('input[name="email"]')
+          .value.trim();
+        const phone = document
+          .querySelector('input[name="phone"]')
+          .value.trim();
+        const service = document
+          .querySelector('select[name="service"]')
+          .value.trim();
+        const message = document
+          .querySelector('textarea[name="message"]')
+          .value.trim();
+
+        // Simple form validation
+        if (name === "") {
+          alert("Please enter your name.");
+          return;
+        }
+
+        if (email === "") {
+          alert("Please enter your email.");
+          return;
+        } else if (!validateEmail(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        if (phone === "") {
+          alert("Please enter your phone number.");
+          return;
+        }
+
+        if (service === "") {
+          alert("Please select a service.");
+          return;
+        }
+
+        if (message === "") {
+          alert("Please enter your message.");
+          return;
+        }
+
+        const formData = {
+          name: name,
+          email: email,
+          phone: phone,
+          service: service,
+          message: message,
+        };
+
+        console.log("Form Data:", formData);
+
+        // Send form data via fetch
+        fetch("https://techno-series-api.up.railway.app/api/inquiries", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Show success message
+              alert(
+                "Your inquiry has been sent successfully! We will get back to you as soon as possible."
+              );
+              // Reset form
+              form.reset();
+            } else {
+              throw new Error("Network response was not ok.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            // Show an error message
+            alert(
+              "An error occurred while submitting your inquiry. Please try again later."
+            );
+          });
+      }
+
+      // Function to validate email format
+      function validateEmail(email) {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+      }
+    </script>
   </body>
 </html>

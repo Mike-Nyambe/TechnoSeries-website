@@ -1758,18 +1758,27 @@ input[type="radio"] {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -ms-flex-align: center;
-  -webkit-box-align: center;
-  align-items: center;
+  /* -ms-flex-align: center;
+  -webkit-box-align: center; */
+  /* align-items: center; */
 }
 .social-icons li {
   margin-right: 20px;
+  background-color: #1da0f0;
+  height: 40px;
+  width: 40px;
+  padding: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .social-icons li a {
   display: block;
-  color: #848e9f;
+  color: #fff !important;
   -webkit-transition: all 0.4s linear;
   transition: all 0.4s linear;
+  font-size: 20px;
 }
 .social-icons li a:hover {
   color: #0092ff;
@@ -4600,6 +4609,8 @@ input[type="radio"] {
 .member .member__img img {
   width: 100%;
   border-radius: 4px;
+  height: 400px;
+  object-fit: contain;
 }
 .member .member__info {
   padding-top: 21px;
